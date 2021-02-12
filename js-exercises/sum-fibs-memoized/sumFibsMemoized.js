@@ -1,5 +1,3 @@
-const cacheStore = {};
-
 function fibo(n) {
   if (n <= 1) return 1;
   return fibo(n - 1) + fibo(n - 2);
@@ -24,14 +22,15 @@ function sumFibs(num) {
   return sum;
 }
 
-function cacheFunction(num) {
-  let val = cacheStore[num];
-  if (val) {
-    return val;
-  }
-  val = sumFibs(num);
-  cacheStore[num] = val;
-  return sumFibs;
+function cacheFunction(fn) {
+  const cacheStore = {};
+  return function memoFn(num) {
+    if (num in cacheStore) {
+      return cacheStore[num];
+    }
+    cacheStore[num] = fn(num);
+    return cacheStore[num];
+  };
 }
 
 export { sumFibs, cacheFunction };
