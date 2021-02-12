@@ -1,7 +1,3 @@
-// function isAlpha(ch) {
-//   return /^[A-Z]$/i.test(ch);
-// }
-
 function rot13(str) {
   let result = '';
 
