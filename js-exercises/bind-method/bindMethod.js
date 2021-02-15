@@ -1,10 +1,9 @@
 function bind(fn, obj) {
-  function newFn(value) {
-    const objValue = Object.values(obj)[0];
-    if (typeof value !== 'number') {
+  function newFn(...args) {
+    if (typeof args[0] !== 'number') {
       return null;
     }
-    return objValue + value;
+    return fn.apply(obj, args);
   }
   return newFn;
 }
